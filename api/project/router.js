@@ -5,7 +5,11 @@ const Project = require('./model')
 const router = express.Router()
 
 router.post('/resources', (req, res, next) => {
-    
+    Project.addResource(req.body)
+        .then(rec => {
+            res.status(201).json(rec)
+        })
+        .catch(next)
 })
 
 router.get('/resources', (req, res, next) => {
