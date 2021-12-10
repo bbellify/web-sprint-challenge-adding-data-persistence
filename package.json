@@ -5,7 +5,9 @@
   "scripts": {
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --silent",
     "server": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "migrate": "knex migrate:up",
+    "rollback": "knex migrate:down"
   },
   "repository": {
     "type": "git",
