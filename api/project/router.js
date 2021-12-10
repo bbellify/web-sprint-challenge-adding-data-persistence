@@ -21,7 +21,11 @@ router.get('/resources', (req, res, next) => {
 })
 
 router.post('/projects', (req, res, next) => {
-
+    Project.addProject(req.body)
+        .then(rec => {
+            res.status(201).json(rec)
+        })
+        .catch(next)
 })
 
 router.get('/projects', (req, res, next) => {

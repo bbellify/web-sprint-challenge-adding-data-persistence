@@ -44,6 +44,28 @@ async function getProjects() {
     return response
 }
 
+async function getProjectById(id) {
+    const project = await db('projects').where('project_id', id)
+    return project
+}
+
+async function addProject(project) {
+    // insert into projects (project_name) values ('finish cameras');
+
+    const newId = await db('projects')
+        .insert(project)
+    
+    let [newProject] = await getProjectById(newId)
+    
+    newProject = {
+        ...newProject,
+        project_completed: newProject.project_completed ? true : false
+    }
+
+    return newProject
+
+}
+
 async function getTasks() {
 // select 
 //     t.*,
@@ -74,4 +96,5 @@ module.exports = {
     getProjects,
     getTasks,
     addResource,
+    addProject,
 }
