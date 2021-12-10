@@ -13,7 +13,7 @@ async function getResources() {
 async function getProjects() {
     
     // select * from projects;
-    
+
     const rows = await db('projects')
 
     const response = []
@@ -27,6 +27,7 @@ async function getProjects() {
 
     return response
 }
+
 
 
 

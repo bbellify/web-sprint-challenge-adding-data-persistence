@@ -9,13 +9,13 @@ exports.up = async function(knex) {
         })
     await knex.schema
         .createTable('resources', table => {
-            table.increments('id')    
+            table.increments('resource_id')    
             table.string('resource_name').notNullable().unique()
             table.string('resource_description')
         })
     await knex.schema
         .createTable('tasks', table => {
-            table.increments('id')
+            table.increments('task_id')
             table.string('task_description').notNullable()
             table.string('task_notes')
             table.boolean('task_completed').defaultTo(false)
@@ -30,7 +30,7 @@ exports.up = async function(knex) {
         })
     await knex.schema
         .createTable('project_resources', table => {
-            table.increments('id')
+            table.increments('project_resource_id')
 
         })
 };
