@@ -3,6 +3,30 @@ const express = require('express')
 
 const router = express.Router()
 
+router.post('/resources', (req, res, next) => {
+    
+})
+
+router.get('/resources', (req, res, next) => {
+
+})
+
+router.post('/projects', (req, res, next) => {
+
+})
+
+router.get('/projects', (req, res, next) => {
+
+})
+
+router.post('/tasks', (req, res, next) => {
+
+})
+
+router.get('/tasks', (req, res, next) => {
+    
+})
+
 router.use((err, req, res, next) => { //eslint-disable-line
     res.status(500).json({
         message: err.message,
