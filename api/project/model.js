@@ -28,7 +28,30 @@ async function getProjects() {
     return response
 }
 
+async function getTasks() {
+// select 
+//     t.*,
+//     p.project_name,
+//     p.project_description
+// from tasks as t
+// left join projects as p
+//     on p.project_id = t.project_id;
 
+    const rows = await db('tasks as t')
+        .select('t.task_id', 't.task_description', 't.task_notes', 't.task_completed', 'p.project_name', 'p.project_description')
+        .leftJoin('projects as p', 'p.project_id', 't.project_id')
+
+    const response = []
+
+    rows.map(task => {
+        response.push({
+            ...task,
+            task_completed: task.task_completed ? true : false
+        })
+    })
+    
+    return response
+}
 
 
 
@@ -40,4 +63,5 @@ async function getProjects() {
 module.exports = {
     getResources,
     getProjects,
+    getTasks
 }

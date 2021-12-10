@@ -33,7 +33,11 @@ router.post('/tasks', (req, res, next) => {
 })
 
 router.get('/tasks', (req, res, next) => {
-    
+    Project.getTasks()
+        .then(rec => {
+            res.json(rec)
+        })
+        .catch(next)
 
 })
 
