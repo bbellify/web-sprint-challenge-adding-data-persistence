@@ -37,7 +37,11 @@ router.get('/projects', (req, res, next) => {
 })
 
 router.post('/tasks', (req, res, next) => {
-
+    Project.addTask(req.body)
+        .then(rec => {
+            res.status(201).json(rec)
+        })
+        .catch(next)
 })
 
 router.get('/tasks', (req, res, next) => {

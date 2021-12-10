@@ -91,10 +91,32 @@ async function getTasks() {
     return response
 }
 
+async function getTaskById(id) {
+    const task = await db('tasks').where('task_id', id)
+    return task
+}
+
+async function addTask(task) {
+    // insert into tasks (task_description, project_id) values ('drill holes', 2);
+
+    const [newId] = await db('tasks')
+        .insert(task)
+
+    let [newTask] = await getTaskById(newId)
+
+    newTask = {
+        ...newTask,
+        task_completed: newTask.task_completed ? true : false
+    }
+    
+    return newTask
+}
+
 module.exports = {
     getResources,
     getProjects,
     getTasks,
     addResource,
     addProject,
+    addTask
 }
